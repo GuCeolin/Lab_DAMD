@@ -1,0 +1,15 @@
+{
+  "name": "lista-compras-microservices",
+  "version": "1.0.0",
+  "description": "Projeto de lista de compras com microsserviços",
+  "main": "index.js",
+  "scripts": {
+    "install:all": "npm install && (cd services/user-service && npm install) && (cd services/item-service && npm install) && (cd services/list-service && npm install) && (cd api-gateway && npm install)",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.4"
+  }
+}

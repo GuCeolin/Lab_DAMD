@@ -1,0 +1,14 @@
+{
+  "name": "item-service",
+  "version": "1.0.0",
+  "description": "Catálogo de itens/produtos",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "uuid": "^8.3.2",
+    "jsonwebtoken": "^8.5.1"
+  }
+}

@@ -93,3 +93,4 @@ Para testar a nova funcionalidade de checkout, você precisará fazer uma requis
 - **`POST /api/lists/:id/checkout`**: Inicia o processo de checkout de uma lista (operação assíncrona).**
 - `GET /api/dashboard`: Retorna um dashboard agregado com estatísticas do usuário.
 - `GET /health`: Verifica e retorna o status de todos os serviços registrados.
+  

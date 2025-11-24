@@ -1,0 +1,91 @@
+{
+  "lists": [
+    {
+      "id": "5c845f1e-1613-4e31-b377-9289e4f3464a",
+      "userId": "7fb03bea-10cc-4b24-b43a-a0082c4d64cb",
+      "name": "Minha Lista de Compras",
+      "description": "Itens para a semana",
+      "status": "active",
+      "items": [
+        {
+          "itemId": "1",
+          "itemName": "Arroz Integral",
+          "quantity": 2,
+          "unit": "kg",
+          "estimatedPrice": 15.5,
+          "purchased": false,
+          "notes": "Comprar 2 unidades",
+          "addedAt": "2025-11-24T01:47:14.756Z"
+        },
+        {
+          "itemId": "3",
+          "itemName": "Leite Integral",
+          "quantity": 1,
+          "unit": "litro",
+          "estimatedPrice": 4.5,
+          "purchased": false,
+          "notes": "",
+          "addedAt": "2025-11-24T01:47:14.783Z"
+        }
+      ],
+      "summary": {
+        "totalItems": 2,
+        "purchasedItems": 0,
+        "estimatedTotal": 35.5
+      },
+      "createdAt": "2025-11-24T01:47:14.683Z",
+      "updatedAt": "2025-11-24T01:47:14.783Z"
+    },
+    {
+      "id": "ae2ccc17-1c9b-4468-8406-6db2abe703e1",
+      "userId": "abc4117a-010e-44d0-aa62-21c43ea7beff",
+      "name": "Minha Lista de Compras",
+      "description": "Itens para a semana",
+      "status": "active",
+      "items": [
+        {
+          "itemId": "1",
+          "itemName": "Arroz Integral",
+          "quantity": 2,
+          "unit": "kg",
+          "estimatedPrice": 15.5,
+          "purchased": false,
+          "notes": "Comprar 2 unidades",
+          "addedAt": "2025-11-24T01:49:11.949Z"
+        },
+        {
+          "itemId": "3",
+          "itemName": "Leite Integral",
+          "quantity": 1,
+          "unit": "litro",
+          "estimatedPrice": 4.5,
+          "purchased": false,
+          "notes": "",
+          "addedAt": "2025-11-24T01:49:11.971Z"
+        }
+      ],
+      "summary": {
+        "totalItems": 2,
+        "purchasedItems": 0,
+        "estimatedTotal": 35.5
+      },
+      "createdAt": "2025-11-24T01:49:11.933Z",
+      "updatedAt": "2025-11-24T01:49:11.971Z"
+    },
+    {
+      "id": "2d2e5dfb-a3ab-4729-93af-9a1d4e4beaea",
+      "userId": "e4767925-c9a0-429a-bb6c-d93614ca47b5",
+      "name": "Minha Lista de Compras (Postman)",
+      "description": "Itens para testar o checkout assíncrono",
+      "status": "completed",
+      "items": [],
+      "summary": {
+        "totalItems": 0,
+        "purchasedItems": 0,
+        "estimatedTotal": 0
+      },
+      "createdAt": "2025-11-24T02:18:12.330Z",
+      "updatedAt": "2025-11-24T02:19:05.347Z"
+    }
+  ]
+}

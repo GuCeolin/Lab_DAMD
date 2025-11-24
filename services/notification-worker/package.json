@@ -1,0 +1,12 @@
+{
+  "name": "notification-worker",
+  "version": "1.0.0",
+  "description": "A worker to consume checkout events and send notifications.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "amqplib": "^0.10.9"
+  }
+}

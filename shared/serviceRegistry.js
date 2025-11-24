@@ -6,7 +6,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-const registryPath = path.join(__dirname, '..", 'service-registry.json');
+const registryPath = path.join(__dirname, '..', 'service-registry.json');
 
 async function getRegistry() {
     try {
@@ -26,16 +26,20 @@ async function saveRegistry(registry) {
 
 async function register(serviceName, serviceUrl) {
     const registry = await getRegistry();
-    registry.services[serviceName] = { url: serviceUrl, registeredAt: new Date().toISOString() };
+    registry.services[serviceName] = { 
+        url: serviceUrl, 
+        registeredAt: new Date().toISOString(),
+        status: 'UP'
+    };
     await saveRegistry(registry);
-    console.log(`Service ${serviceName} registered at ${serviceUrl}`);
+    console.log(`[SERVICE REGISTRY] Service ${serviceName} registered at ${serviceUrl}`);
 }
 
 async function unregister(serviceName) {
     const registry = await getRegistry();
     delete registry.services[serviceName];
     await saveRegistry(registry);
-    console.log(`Service ${serviceName} unregistered.`);
+    console.log(`[SERVICE REGISTRY] Service ${serviceName} unregistered.`);
 }
 
 async function getService(serviceName) {

@@ -1,0 +1,24 @@
+{
+  "services": {
+    "userService": {
+      "url": "http://localhost:3001",
+      "registeredAt": "2025-11-24T02:12:04.618Z",
+      "status": "UP"
+    },
+    "itemService": {
+      "url": "http://localhost:3003",
+      "registeredAt": "2025-11-24T02:12:02.046Z",
+      "status": "UP"
+    },
+    "listService": {
+      "url": "http://localhost:3002",
+      "registeredAt": "2025-11-24T02:12:00.855Z",
+      "status": "UP"
+    },
+    "apiGateway": {
+      "url": "http://localhost:3000",
+      "registeredAt": "2025-11-24T02:11:58.975Z",
+      "status": "UP"
+    }
+  }
+}

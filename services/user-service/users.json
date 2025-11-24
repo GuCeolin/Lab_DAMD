@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "id": "7fb03bea-10cc-4b24-b43a-a0082c4d64cb",
+      "email": "testuser-1763948831297@example.com",
+      "username": "testuser-1763948831297",
+      "password": "$2b$10$LmygUY5ZCjkvI13eu2pkY.6VGxoC9MO2o0xqiiFxXwB1tj5/cpeKC",
+      "firstName": "Test",
+      "lastName": "User",
+      "preferences": {
+        "defaultStore": "",
+        "currency": "BRL"
+      },
+      "createdAt": "2025-11-24T01:47:14.518Z",
+      "updatedAt": "2025-11-24T01:47:14.518Z"
+    },
+    {
+      "id": "abc4117a-010e-44d0-aa62-21c43ea7beff",
+      "email": "testuser-1763948948595@example.com",
+      "username": "testuser-1763948948595",
+      "password": "$2b$10$cKGQ/nTYYnyWlKrJCmj/EuUX3fd4g15r.V0rkj9o.pAiPGvGeZJlK",
+      "firstName": "Test",
+      "lastName": "User",
+      "preferences": {
+        "defaultStore": "",
+        "currency": "BRL"
+      },
+      "createdAt": "2025-11-24T01:49:11.809Z",
+      "updatedAt": "2025-11-24T01:49:11.809Z"
+    },
+    {
+      "id": "e4767925-c9a0-429a-bb6c-d93614ca47b5",
+      "email": "test-postman@example.com",
+      "username": "postmanuser",
+      "password": "$2b$10$uWQIhEGyw2b7M3X6t5wVMOq61UiWUZQ7JlC6Dqt6q1juXMK859/q6",
+      "firstName": "Postman",
+      "lastName": "Test",
+      "preferences": {
+        "defaultStore": "",
+        "currency": "BRL"
+      },
+      "createdAt": "2025-11-24T02:16:43.274Z",
+      "updatedAt": "2025-11-24T02:16:43.274Z"
+    }
+  ]
+}

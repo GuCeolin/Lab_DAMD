@@ -3,6 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 const jwt = require('jsonwebtoken');
 const axios = require('axios');
+const amqp = require('amqplib');
 const JsonDatabase = require('../../shared/JsonDatabase');
 const { register, getService } = require('../../shared/serviceRegistry');
 
@@ -10,9 +11,47 @@ const app = express();
 const port = 3002;
 const JWT_SECRET = 'your-secret-key';
 
+// RabbitMQ Config - Deixe a sua URL aqui
+const AMQP_URL = "amqps://xhutorux:Ru5T7D-E9l006utkEjXfkr_ocPdg-9At@jaragua.lmq.cloudamqp.com/xhutorux";
+const EXCHANGE_NAME = 'shopping_events';
+
 const db = new JsonDatabase(path.join(__dirname, 'lists.json'));
 
+/**
+ * Publica um evento de checkout no RabbitMQ.
+ * @param {object} payload - O conteúdo da mensagem a ser enviada.
+ */
+async function publishCheckoutEvent(payload) {
+    console.log('Attempting to connect to RabbitMQ...');
+    try {
+        const connection = await amqp.connect(AMQP_URL);
+        const channel = await connection.createChannel();
+        
+        await channel.assertExchange(EXCHANGE_NAME, 'topic', { durable: true });
+        
+        const routingKey = 'list.checkout.completed';
+        channel.publish(EXCHANGE_NAME, routingKey, Buffer.from(JSON.stringify(payload)));
+        
+        console.log(`[SUCCESS] Published event '${routingKey}' to exchange '${EXCHANGE_NAME}'`);
+        
+        setTimeout(() => {
+            channel.close();
+            connection.close();
+            console.log('RabbitMQ connection closed.');
+        }, 500);
+
+    } catch (error) {
+        console.error('Error publishing message to RabbitMQ:', error);
+    }
+}
+
+
 app.use(express.json());
+
+// Health check endpoint - ANTES de autenticação
+app.get('/health', (req, res) => {
+    res.json({ status: 'UP', service: 'List Service', timestamp: new Date().toISOString() });
+});
 
 const authMiddleware = (req, res, next) => {
     const authHeader = req.headers.authorization;
@@ -185,6 +224,44 @@ app.get('/lists/:id/summary', async (req, res) => {
     if (!list) return res.status(404).json({ message: 'List not found' });
     res.json(list.summary);
 });
+
+// Endpoint de Checkout assíncrono
+app.post('/lists/:id/checkout', async (req, res) => {
+    await db.load();
+    const lists = db.get('lists') || [];
+    const list = lists.find(l => l.id === req.params.id && l.userId === req.user.id);
+
+    if (!list) {
+        return res.status(404).json({ message: 'List not found' });
+    }
+    
+    // Simula a obtenção do email do usuário (em um cenário real, viria de outro serviço)
+    const userEmail = `${req.user.username}@example.com`;
+
+    const payload = {
+        listId: list.id,
+        userId: req.user.id,
+        userEmail: userEmail,
+        listName: list.name,
+        summary: list.summary,
+        checkoutTimestamp: new Date().toISOString()
+    };
+
+    // Publica o evento de forma assíncrona
+    publishCheckoutEvent(payload);
+
+    // Atualiza o status da lista localmente
+    const listIndex = lists.findIndex(l => l.id === list.id);
+    if (listIndex !== -1) {
+        lists[listIndex].status = 'completed';
+        lists[listIndex].updatedAt = new Date().toISOString();
+        await db.set('lists', lists);
+    }
+    
+    // Retorna 202 Accepted imediatamente
+    res.status(202).json({ message: 'Checkout process has been initiated.', listId: list.id });
+});
+
 
 app.listen(port, async () => {
     await register('listService', `http://localhost:${port}`);

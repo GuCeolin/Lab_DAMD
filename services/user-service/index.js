@@ -128,6 +128,11 @@ app.put('/users/:id', authMiddleware, async (req, res) => {
     res.json(updatedUser);
 });
 
+// Health check endpoint
+app.get('/health', (req, res) => {
+    res.json({ status: 'UP', service: 'User Service', timestamp: new Date().toISOString() });
+});
+
 app.listen(port, async () => {
     await register('userService', `http://localhost:${port}`);
     console.log(`User Service listening at http://localhost:${port}`);
